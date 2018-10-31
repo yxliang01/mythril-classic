@@ -73,7 +73,7 @@ def main():
 
     options.add_argument('--strategy', choices=['dfs', 'bfs', 'naive-random', 'weighted-random'],
                          default='dfs', help='Symbolic execution strategy')
-    options.add_argument('--max-transaction-count', type=int, default=3, help='Maximum number of transactions issued by laser')
+    options.add_argument('--max-transaction-count', type=int, default=1, help='Maximum number of transactions issued by laser')
 
     options.add_argument('--execution-timeout', type=int, default=600, help="The amount of seconds to spend on symbolic execution")
     options.add_argument('--create-timeout', type=int, default=10, help="The amount of seconds to spend on "
