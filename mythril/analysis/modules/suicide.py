@@ -1,6 +1,4 @@
 from mythril.analysis import solver
-from mythril.analysis.analysis_utils import get_non_creator_constraints
-from mythril.analysis.ops import *
 from mythril.analysis.report import Issue
 from mythril.analysis.swc_data import UNPROTECTED_SELFDESTRUCT
 from mythril.exceptions import UnsatError
