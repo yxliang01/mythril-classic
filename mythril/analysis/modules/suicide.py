@@ -79,4 +79,3 @@ class SuicideModule(DetectionModule):
 
 
 detector = SuicideModule()
-
