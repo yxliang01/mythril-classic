@@ -44,8 +44,11 @@ class Storage:
                 except ValueError:
                     pass
         if self.concrete:
-            return symbol_factory.BitVecVal(0, 256)
-        self._storage[item] = symbol_factory.BitVecVal(0, 256)
+            self._storage[item] = symbol_factory.BitVecVal(0, 256)
+        else:
+            self._storage[item] = symbol_factory.BitVecSym(
+                "storage[%s]".format(item), 256
+            )
         return self._storage[item]
 
     def __setitem__(self, key: str, value: ExprRef) -> None:
