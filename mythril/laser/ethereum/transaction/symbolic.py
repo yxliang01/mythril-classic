@@ -32,7 +32,7 @@ def execute_message_call(laser_evm, callee_address: str) -> None:
         if open_world_state[callee_address].deleted:
             log.debug("Can not execute dead contract, skipping.")
             continue
-
+        open_world_state[callee_address].storage.concrete = False
         next_transaction_id = get_next_transaction_id()
         transaction = MessageCallTransaction(
             world_state=open_world_state,
@@ -66,7 +66,7 @@ def execute_contract_creation(
     del laser_evm.open_states[:]
 
     new_account = laser_evm.world_state.create_account(
-        0, concrete_storage=False, dynamic_loader=None
+        0, concrete_storage=True, dynamic_loader=None
     )
     if contract_name:
         new_account.contract_name = contract_name

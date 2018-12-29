@@ -1051,10 +1051,19 @@ class Instruction:
             global_state.accounts[
                 global_state.environment.active_account.address
             ] = global_state.environment.active_account
-
-            global_state.environment.active_account.storage[index] = (
+            storage_value = (
                 value if not isinstance(value, Expression) else simplify(value)
             )
+            if isinstance(
+                global_state.environment.active_account.storage[index], BitVec
+            ):
+                global_state.mstate.constraints.append(
+                    global_state.environment.active_account.storage[index]
+                    == storage_value
+                )
+            else:
+                global_state.environment.active_account.storage[index] = storage_value
+
         except KeyError:
             log.debug("Error writing to storage: Invalid index")
 
